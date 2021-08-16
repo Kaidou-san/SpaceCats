@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@* @model Cat
+<h1 class="jumbotron jumbotron-fluid">SPACE, THE FINAL MEOWNTIER</h1>
+<div class="container">
+    <form action="createCat" method="post">
+        <div class="row">
+            <div class="col-6">
+                <label for="Name">Name</label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Name" class="form-control">
+
+                <label for="Breed">Breed</label>
+                <span asp-validation-for="Breed" class="text-danger"></span>
+                <input asp-for="Breed" class="form-control">
+
+                <label for="Weapon">Weapon</label>
+                <span asp-validation-for="Weapon" class="text-danger"></span>
+                <select asp-for="Weapon" class="form-control">
+                    <option disabled selected>--Select a weapon--</option>
+                    <option value="LaserGun">Laser Gun</option>
+                    <option value="PlasmaAccelerator">Plasma Accelerator</option>
+                    <option value="LightSabor">Light Sabor</option>
+                    <option value="SuperMarioStar">Super Mario Star</option>
+                </select>
+            </div>
+
+            <div class="col-6">
+                <label for="Image">Image</label>
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <input asp-for="Image" class="form-control">
+                <label for="MortalEnemy">Mortal Enemy</label>
+                <span asp-validation-for="MortalEnemy" class="text-danger"></span>
+                <input asp-for="MortalEnemy" class="form-control">
+                <label for="Lives">Lives</label>
+                <span asp-validation-for="Lives" class="text-danger"></span>
+                <input asp-for="Lives" class="form-control">
+            </div>
+        </div>
+        <input type="submit" value="submit" class="btn btn-primary mt-2">
+    </form>
+    <hr>
+    <h1>All SPACE CATS (# of cats: @ViewBag.CatCount)</h1>
+    @{
+        foreach(Cat c in ViewBag.AllCats)
+        {
+            <partial name="_CatCard" model="c"/>
+        }
+    }
+    <hr> *@
+    <div class="text-center">
+        <h1>All Cats</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Breed</th>
+                <th>Weapon</th>
+                <th>Mortal Enemy</th>
+                <th>Lives</th>
+            </tr>
+            @{
+                foreach(Cat s in ViewBag.AllCats)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.Breed</td>
+                    <td>@s.Weapon</td>
+                    <td>@s.MortalEnemy</td>
+                    <td>@s.Lives</td>
+                </tr>
+            }
+        }
+        </table>
+        <hr>
+        <h1>All Cats whos mortal enemy is Dog</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Breed</th>
+                <th>Weapon</th>
+                <th>Mortal Enemy</th>
+                <th>Lives</th>
+            </tr>
+            @{
+                foreach(Cat s in ViewBag.DogEnemies)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.Breed</td>
+                    <td>@s.Weapon</td>
+                    <td>@s.MortalEnemy</td>
+                    <td>@s.Lives</td>
+                </tr>
+            }
+        }
+        </table>
+        <hr>
+        <h1>Cat w a GUN: @ViewBag.Gun.Name</h1>
+    </div>
+</div>
